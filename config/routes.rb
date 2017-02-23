@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
     resources :my_threads do
         resources :comments, only: [:create, :destroy, :update, :edit]
     end

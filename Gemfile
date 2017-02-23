@@ -59,3 +59,5 @@ gem 'pry-byebug', group: :development
 group :development do
       gem "better_errors"
 end
+
+gem 'devise'
