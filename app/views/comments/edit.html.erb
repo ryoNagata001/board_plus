@@ -1,0 +1,17 @@
+<h1>Edit</h1>
+
+<%= form_for @comment, :url => {:action => 'update'} do |f| %>
+    <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    </p>
+
+    <p>
+    <%= f.label :content %>
+    <%= f.text_field :content %>
+    </p>
+
+    <p>
+    <%= f.submit %>
+    </p>
+<% end %>

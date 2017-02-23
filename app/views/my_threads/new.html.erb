@@ -1,0 +1,16 @@
+<h1>Add new</h1>
+
+<%= form_for @my_thread do |f| %>
+
+    <p>
+    <%= f.label :title %><!--ここでlabelにtitleを入れている--!>
+    <%= f.text_field :title %>
+    <% if @my_thread.errors.any? %>
+        <%= @my_thread.errors.messages[:title][0] %>
+    <% end %>
+    </p>
+
+    <p>
+    <%= f.submit %>
+    </p>
+<% end %>

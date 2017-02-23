@@ -1,0 +1,12 @@
+<h1>All Threads</h1>
+
+<% @my_threads.each do |thread| %>
+    <p>
+        <%= link_to "#{thread.title}", my_thread_path(:id => thread.id), method: :get %>
+        <%= link_to '[EDIT]', edit_my_thread_path(:id => thread.id) %>
+        <%= link_to '[DELETE]', my_thread_path(:id => thread.id), method: :delete, data: {confirm: "are you sure?"} %>
+    </p>
+<% end %>
+
+
+<p><%= link_to 'add new thread', new_my_thread_path %></p>

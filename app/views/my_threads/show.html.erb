@@ -1,0 +1,38 @@
+<h1><%= @my_thread.title %></h1>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Content</th>
+            <th colspan="3"></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @my_thread.comments.each do |comment| %>
+            <tr>
+                <td><%= comment.name %></td>
+                <td><%= comment.content %></td>
+                <td><%= link_to 'Edit', edit_my_thread_comment_path(:my_thread_id => comment.my_thread_id, :id => comment.id)%></td>
+                <td><%= link_to 'Delete', my_thread_comment_path(:my_thread_id => comment.my_thread_id, :id => comment.id), method: :delete, data: {confirm: 'Are you sure?'}%></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+<p>新規コメント<br>
+<%= form_for [@my_thread, @my_thread.comments.build] do |f| %>
+    <p>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+    </p>
+    <p>
+    <%= f.label :content %>
+    <%= f.text_field :content %>
+    </p>
+    <p>
+    <%= f.submit %>
+    </p>
+<% end %>
+</p>
