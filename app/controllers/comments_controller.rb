@@ -6,8 +6,11 @@ class CommentsController < ApplicationController
         if @comment.save
             redirect_to my_thread_path(@my_thread.id), motice: '投稿されました'
         else
-            render my_thread_path(@my_thread.id)
+            render "new"
         end
+    end
+    def new
+        @comment = Comment.new
     end
     def edit
         @my_thread = MyThread.find(params[:my_thread_id])
@@ -15,17 +18,25 @@ class CommentsController < ApplicationController
     end
     def update
         @comment = Comment.find(params[:id])
-        if @comment.update(comment_params)
-            redirect_to my_thread_path(:id => @comment.my_thread_id)
+        if @comment.user_id == current_user.id
+            if @comment.update(comment_params)
+                redirect_to my_thread_path(:id => @comment.my_thread_id)
+            else
+                render 'edit'
+            end
         else
-            render 'edit'
+            render "/"
         end
     end
 
     def destroy
         @comment = Comment.find(params[:id])
-        @comment.destroy
-        redirect_to my_thread_path(:id => params[:my_thread_id])
+        if @comment.user_id == current_user.id
+            @comment.destroy
+            redirect_to my_thread_path(:id => params[:my_thread_id])
+        else
+            render "/"
+        end
     end
 
     private

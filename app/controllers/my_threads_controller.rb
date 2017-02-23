@@ -1,5 +1,5 @@
 class MyThreadsController < ApplicationController
-    def index
+   def index
         @my_threads = MyThread.all
         @current_user = current_user
     end
@@ -28,16 +28,24 @@ class MyThreadsController < ApplicationController
 
     def update
         @my_thread = MyThread.find(params[:id])
-        if @my_thread.update(my_thread_params)
-            redirect_to my_threads_path
+        if @my_thread.user_id == current_user.id
+            if @my_thread.update(my_thread_params)
+                redirect_to my_threads_path
+            else
+                render "edit"
+            end
         else
-            render "edit"
+            render "/"
         end
     end
     def destroy
         @my_thread = MyThread.find(params[:id])
-        @my_thread.destroy
-        redirect_to my_threads_path
+        if @my_thread.user_id == current_user.id
+            @my_thread.destroy
+            redirect_to my_threads_path
+        else
+            reder "/"
+        end
     end
     private
 
