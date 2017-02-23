@@ -1,0 +1,19 @@
+<h1>New Comment</h1>
+
+<h2>テキストボックスを埋めてください</h2>
+
+<%= form_for @comment, :url => {:action => 'create'} do |f| %>
+    <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    </p>
+
+    <p>
+    <%= f.label :content %>
+    <%= f.text_field :content %>
+    </p>
+
+    <p>
+    <%= f.submit %>
+    </p>
+<% end %>
