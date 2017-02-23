@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
     def create
         @my_thread = MyThread.find(params[:my_thread_id])
         @comment = @my_thread.comments.new(comment_params)
+        @comment.user_id = current_user.id
         if @comment.save
             redirect_to my_thread_path(@my_thread.id), motice: '投稿されました'
         else

@@ -1,6 +1,7 @@
 class MyThreadsController < ApplicationController
     def index
         @my_threads = MyThread.all
+        @current_user = current_user
     end
     
     def show
@@ -13,10 +14,11 @@ class MyThreadsController < ApplicationController
 
     def create
         @my_thread = MyThread.new(my_thread_params)
+        @my_thread.user_id = current_user.id
         if @my_thread.save
             redirect_to my_threads_path
         else
-            render 'new'
+           render :new
         end
     end
 
