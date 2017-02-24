@@ -14,7 +14,6 @@ class MyThreadsController < ApplicationController
 
     def create
         @my_thread = MyThread.new(my_thread_params)
-        @my_thread.user_id = current_user.id
         if @my_thread.save
             redirect_to my_threads_path
         else
@@ -50,6 +49,6 @@ class MyThreadsController < ApplicationController
     private
 
     def my_thread_params
-        params[:my_thread].permit(:title)
+        params[:my_thread].permit(:title).mearge(user_id: current_user.id)
     end
 end
