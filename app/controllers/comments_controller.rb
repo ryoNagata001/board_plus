@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
                 render 'edit'
             end
         else
-            render 'edit', notice: "権限がありません"
+            redirect_to my_threads_path, notice: "権限がありません"
         end
     end
 
