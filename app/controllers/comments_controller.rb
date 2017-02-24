@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
                 render 'edit'
             end
         else
-            render "/"
+            render 'edit'
         end
     end
 
@@ -35,7 +35,7 @@ class CommentsController < ApplicationController
             @comment.destroy
             redirect_to my_thread_path(:id => params[:my_thread_id])
         else
-            render "/"
+            render 'edit'
         end
     end
 

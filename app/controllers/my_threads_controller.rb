@@ -35,7 +35,7 @@ class MyThreadsController < ApplicationController
                 render "edit"
             end
         else
-            render "/"
+            render "edit"
         end
     end
     def destroy
@@ -44,7 +44,7 @@ class MyThreadsController < ApplicationController
             @my_thread.destroy
             redirect_to my_threads_path
         else
-            reder "/"
+            reder "index"
         end
     end
     private
