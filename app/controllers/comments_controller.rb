@@ -2,7 +2,6 @@ class CommentsController < ApplicationController
     def create
         @my_thread = MyThread.find(params[:my_thread_id])
         @comment = @my_thread.comments.new(comment_params)
-        @comment.user_id = current_user.id
         if @comment.save
             redirect_to my_thread_path(@my_thread.id), motice: '投稿されました'
         else
@@ -25,7 +24,7 @@ class CommentsController < ApplicationController
                 render 'edit'
             end
         else
-            render 'edit'
+            render 'edit', notice: "権限がありません"
         end
     end
 
@@ -41,6 +40,6 @@ class CommentsController < ApplicationController
 
     private
     def comment_params
-        params.require(:comment).permit(:name, :content, :my_thread_id)
+        params.require(:comment).permit(:name, :content, :my_thread_id).merge(user_id: current_user.id)
     end
 end

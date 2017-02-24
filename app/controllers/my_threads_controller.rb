@@ -43,12 +43,12 @@ class MyThreadsController < ApplicationController
             @my_thread.destroy
             redirect_to my_threads_path
         else
-            render "index"
+            render "index", notice: 'ログインに成功しました'
         end
     end
     private
 
     def my_thread_params
-        params[:my_thread].permit(:title).mearge(user_id: current_user.id)
+        params[:my_thread].permit(:title).merge(user_id: current_user.id)
     end
 end
