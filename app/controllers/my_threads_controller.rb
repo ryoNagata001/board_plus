@@ -43,7 +43,7 @@ class MyThreadsController < ApplicationController
             @my_thread.destroy
             redirect_to my_threads_path
         else
-            reder "index"
+            render "index"
         end
     end
     private
