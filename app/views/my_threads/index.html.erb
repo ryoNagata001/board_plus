@@ -2,7 +2,7 @@
 
 <% @my_threads.each do |thread| %>
     <p>
-        <%= link_to "#{thread.title}", my_thread_path(:id => thread.id), method: :get %>
+        <%= link_to thread.title, my_thread_path(thread.id), method: :get %>
         <% if thread.user_id == current_user.id %>
         <%= link_to '[EDIT]', edit_my_thread_path(:id => thread.id) %>
         <%= link_to '[DELETE]', my_thread_path(:id => thread.id), method: :delete, data: {confirm: "are you sure?"} %>
