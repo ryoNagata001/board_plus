@@ -2,22 +2,6 @@
 
 <%= form_for @comment, :url => {:action => 'update'} do |f| %>
     <p>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-         <% if @comment.errors.any? %>
-            <%= @comment.errors.messages[:name][0] %>
-        <% end %>
-    </p>
-
-    <p>
-    <%= f.label :content %>
-    <%= f.text_field :content %>
-          <% if @comment.errors.any? %>
-            <%= @comment.errors.messages[:content][0] %>
-        <% end %>
-   </p>
-
-    <p>
-    <%= f.submit %>
+    <%= render :partial => 'form', :locals => {:f => f}%>
     </p>
 <% end %>
