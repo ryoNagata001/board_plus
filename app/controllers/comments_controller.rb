@@ -21,10 +21,10 @@ class CommentsController < ApplicationController
             if @comment.update(comment_params)
                 redirect_to my_thread_path(:id => @comment.my_thread_id)
             else
-                render 'edit',:notice => "入力してください"
+                render 'edit'
             end
         else
-            render 'edit',:notice => "あなたには権限がありません"
+            render 'edit', notice: "権限がありません"
         end
     end
 
