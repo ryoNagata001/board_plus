@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
     resources :my_threads do
-        resources :comments, only: [:create, :destroy, :update, :edit]
+        resources :comments, only: [:create, :destroy, :update, :edit, :new]
     end
 
     root "my_threads#index"
